@@ -5,7 +5,7 @@ class wallpaperView: UIViewController{
     
     var name = "8.jpg"
     
-    @IBAction func wallpaperSelect(sender: AnyObject) {
+    @IBAction func wallpaperSelect(_ sender: AnyObject) {
         
         if sender.restorationIdentifier == "1"{
             name = "1.jpg"
@@ -34,8 +34,8 @@ class wallpaperView: UIViewController{
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "8.jpg")!)
         }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let firstViewController = segue.destinationViewController as! ViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let firstViewController = segue.destination as! ViewController
             firstViewController.name = name
     }
 }

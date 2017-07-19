@@ -11,7 +11,7 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return false
     }
  
@@ -27,9 +27,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var name = "9.jpg"
     
     //for numbers
-    @IBAction func numbers(sender: AnyObject) {
+    @IBAction func numbers(_ sender: AnyObject) {
         
-        var number = sender.currentTitle!
+        let number = sender.currentTitle!
         if istyping {
             showDigits.text = showDigits.text! + number!
             showCalculation.text = showCalculation.text! + number!
@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     //decimal period
-    @IBAction func decimal(sender: AnyObject) {
+    @IBAction func decimal(_ sender: AnyObject) {
         
         let decimal = sender.currentTitle!
         
@@ -53,11 +53,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             decimalPushed = true
         }
-        decimalCount++
+        decimalCount += 1
     }
     
     //for equal sign
-    @IBAction func answer(sender: AnyObject) {
+    @IBAction func answer(_ sender: AnyObject) {
         
         number2 = Double(showDigits.text!)!;
         if opr == "+"{
@@ -69,7 +69,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }else if opr == "/"{
             
             tempRes = round((Double( number1) / Double(number2))*1000)/1000
-            if number1 % number2 == 0{
+            if number1.truncatingRemainder(dividingBy: number2) == 0{
                 showDigits.text = "\(Int(tempRes))"
                 showCalculation.text = showCalculation.text! + " = " + "\(Int(tempRes))"
             }else{
@@ -92,7 +92,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    @IBAction func negativeMaker(sender: AnyObject) {
+    @IBAction func negativeMaker(_ sender: AnyObject) {
         
         number1 = Double(showDigits.text!)!
         result = number1 - (number1*2)
@@ -110,7 +110,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         decimalPushed = false
     }
     
-    @IBAction func percentage(sender: AnyObject) {
+    @IBAction func percentage(_ sender: AnyObject) {
         
         
         number2 = Double(showDigits.text!)!
@@ -134,7 +134,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     //to reset calc
-    @IBAction func reset(sender: AnyObject) {
+    @IBAction func reset(_ sender: AnyObject) {
         showDigits.text = "0"
         number1 = 0
         number2 = 0
@@ -145,7 +145,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         istyping = false
     }
     
-    @IBAction func operators(sender: AnyObject) {
+    @IBAction func operators(_ sender: AnyObject) {
         
         number1 = Double(showDigits.text!)!
         opr = sender.currentTitle!!;
